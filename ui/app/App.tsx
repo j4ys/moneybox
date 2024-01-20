@@ -6,6 +6,15 @@ import { useTheme } from "./providers/theme.provider";
 import { AuthContext } from "./providers/auth.provider";
 import { Button } from '@components/ui/button';
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@components/ui/accordion"
+import Dashboard from "./Dashboard";
+
+
 
 function App() {
   const { theme, setTheme } = useTheme();
@@ -22,9 +31,7 @@ function App() {
   const {isAuthenticated, user} = useContext(AuthContext);
 
   if(isAuthenticated) {
-    return (<div>
-      Hello {user?.displayName}
-    </div>)
+    return (<Dashboard />)
   }
   return (
     <div className="h-screen flex flex-col">
