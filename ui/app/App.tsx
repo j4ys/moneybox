@@ -1,9 +1,11 @@
 import authService from "./services/firebase/auth.service";
-import React from "react";
-import { Button } from "../components/ui/button";
+import { useContext } from "react";
 import MoneyBoxImage from "./images/money-box-image.svg";
 import { EnvelopeOpenIcon, SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import { useTheme } from "./providers/theme.provider";
+import { AuthContext } from "./providers/auth.provider";
+import { Button } from '@components/ui/button';
+
 
 function App() {
   const { theme, setTheme } = useTheme();
@@ -17,6 +19,13 @@ function App() {
     }
   };
 
+  const {isAuthenticated, user} = useContext(AuthContext);
+
+  if(isAuthenticated) {
+    return (<div>
+      Hello {user?.displayName}
+    </div>)
+  }
   return (
     <div className="h-screen flex flex-col">
       <div className="h-20 px-5 w-full flex flex-row justify-between">

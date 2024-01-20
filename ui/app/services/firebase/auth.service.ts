@@ -3,10 +3,14 @@ import firebaseService from "./firebase.service";
 
 class AuthService {
   SignInWithGooglePopup(): Promise<UserCredential> {
-    const auth = getAuth(firebaseService.getFirebaseAppInstance());
+    const auth = this.getAuthInstance();
     const provider = new GoogleAuthProvider();
 
     return signInWithPopup(auth, provider);
+  }
+
+  public getAuthInstance = () => {
+    return getAuth(firebaseService.getFirebaseAppInstance());
   }
 
 }
